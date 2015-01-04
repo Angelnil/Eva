@@ -13,6 +13,10 @@
 		45E4D0811A5930990044B9B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E4D0801A5930990044B9B8 /* Images.xcassets */; };
 		45E4D0841A5930990044B9B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E4D0821A5930990044B9B8 /* LaunchScreen.xib */; };
 		45E4D0901A5930990044B9B8 /* EvaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D08F1A5930990044B9B8 /* EvaTests.swift */; };
+		45E4D09E1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D09A1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift */; };
+		45E4D09F1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D09B1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift */; };
+		45E4D0A01A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D09C1A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift */; };
+		45E4D0A11A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D09D1A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		45E4D0891A5930990044B9B8 /* EvaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E4D08E1A5930990044B9B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E4D08F1A5930990044B9B8 /* EvaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaTests.swift; sourceTree = "<group>"; };
+		45E4D09A1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPKeyboardAvoidingCollectionView.swift; sourceTree = "<group>"; };
+		45E4D09B1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPKeyboardAvoidingScrollView.swift; sourceTree = "<group>"; };
+		45E4D09C1A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPKeyboardAvoidingTableView.swift; sourceTree = "<group>"; };
+		45E4D09D1A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView_TPKeyboardAvoidingAdditions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		45E4D0761A5930990044B9B8 /* Eva */ = {
 			isa = PBXGroup;
 			children = (
+				45E4D0991A59313F0044B9B8 /* Swift_TPKeyBoard */,
 				45E4D0791A5930990044B9B8 /* AppDelegate.swift */,
 				45E4D07B1A5930990044B9B8 /* ViewController.swift */,
 				45E4D07D1A5930990044B9B8 /* Main.storyboard */,
@@ -110,6 +119,17 @@
 				45E4D08E1A5930990044B9B8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		45E4D0991A59313F0044B9B8 /* Swift_TPKeyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				45E4D09A1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift */,
+				45E4D09B1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift */,
+				45E4D09C1A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift */,
+				45E4D09D1A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift */,
+			);
+			path = Swift_TPKeyBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E4D07C1A5930990044B9B8 /* ViewController.swift in Sources */,
+				45E4D09F1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift in Sources */,
+				45E4D09E1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift in Sources */,
+				45E4D0A11A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift in Sources */,
 				45E4D07A1A5930990044B9B8 /* AppDelegate.swift in Sources */,
+				45E4D0A01A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
