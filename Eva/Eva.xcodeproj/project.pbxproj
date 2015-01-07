@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		457E861B1A5A3B660027A9B7 /* RefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E861A1A5A3B660027A9B7 /* RefreshHeaderView.swift */; };
+		457E861D1A5A3B770027A9B7 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E861C1A5A3B770027A9B7 /* RefreshFooterView.swift */; };
+		457E861F1A5A61970027A9B7 /* RefreshDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E861E1A5A61970027A9B7 /* RefreshDelegate.swift */; };
+		457E86211A5A73F40027A9B7 /* RefreshTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E86201A5A73F40027A9B7 /* RefreshTableView.swift */; };
 		45E4D07A1A5930990044B9B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D0791A5930990044B9B8 /* AppDelegate.swift */; };
 		45E4D07C1A5930990044B9B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4D07B1A5930990044B9B8 /* ViewController.swift */; };
 		45E4D07F1A5930990044B9B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E4D07D1A5930990044B9B8 /* Main.storyboard */; };
@@ -30,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		457E861A1A5A3B660027A9B7 /* RefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderView.swift; sourceTree = "<group>"; };
+		457E861C1A5A3B770027A9B7 /* RefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
+		457E861E1A5A61970027A9B7 /* RefreshDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshDelegate.swift; sourceTree = "<group>"; };
+		457E86201A5A73F40027A9B7 /* RefreshTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTableView.swift; sourceTree = "<group>"; };
 		45E4D0741A5930990044B9B8 /* Eva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E4D0781A5930990044B9B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E4D0791A5930990044B9B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +72,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		457E86171A5A3A830027A9B7 /* RefreshTableView */ = {
+			isa = PBXGroup;
+			children = (
+				457E861E1A5A61970027A9B7 /* RefreshDelegate.swift */,
+				457E861A1A5A3B660027A9B7 /* RefreshHeaderView.swift */,
+				457E861C1A5A3B770027A9B7 /* RefreshFooterView.swift */,
+				457E86201A5A73F40027A9B7 /* RefreshTableView.swift */,
+			);
+			path = RefreshTableView;
+			sourceTree = "<group>";
+		};
 		45E4D06B1A5930990044B9B8 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +104,7 @@
 		45E4D0761A5930990044B9B8 /* Eva */ = {
 			isa = PBXGroup;
 			children = (
+				457E86171A5A3A830027A9B7 /* RefreshTableView */,
 				45E4D0991A59313F0044B9B8 /* Swift_TPKeyBoard */,
 				45E4D0791A5930990044B9B8 /* AppDelegate.swift */,
 				45E4D07B1A5930990044B9B8 /* ViewController.swift */,
@@ -232,11 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457E86211A5A73F40027A9B7 /* RefreshTableView.swift in Sources */,
+				457E861F1A5A61970027A9B7 /* RefreshDelegate.swift in Sources */,
 				45E4D07C1A5930990044B9B8 /* ViewController.swift in Sources */,
 				45E4D09F1A5931A30044B9B8 /* TPKeyboardAvoidingScrollView.swift in Sources */,
 				45E4D09E1A5931A30044B9B8 /* TPKeyboardAvoidingCollectionView.swift in Sources */,
 				45E4D0A11A5931A30044B9B8 /* UIScrollView_TPKeyboardAvoidingAdditions.swift in Sources */,
 				45E4D07A1A5930990044B9B8 /* AppDelegate.swift in Sources */,
+				457E861B1A5A3B660027A9B7 /* RefreshHeaderView.swift in Sources */,
+				457E861D1A5A3B770027A9B7 /* RefreshFooterView.swift in Sources */,
 				45E4D0A01A5931A30044B9B8 /* TPKeyboardAvoidingTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +453,7 @@
 				45E4D0951A5930990044B9B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45E4D0961A5930990044B9B8 /* Build configuration list for PBXNativeTarget "EvaTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +462,7 @@
 				45E4D0981A5930990044B9B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
