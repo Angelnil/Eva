@@ -27,10 +27,10 @@ class TPKeyboardAvoidingState {
     var priorInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     var priorScrollIndicatorInsets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     var priorContentSize:CGSize = CGSize()
-
+    
     var keyboardVisible:Bool = Bool()
     var keyboardRect:CGRect = CGRect()
-
+    
     init() {
         self.priorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.priorScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -42,12 +42,12 @@ class TPKeyboardAvoidingState {
 }
 
 
-extension UIScrollView:UITextFieldDelegate {
+extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
     
     //动态关联
     func tPKeyboardAvoidingState() -> TPKeyboardAvoidingState! {
         var state:TPKeyboardAvoidingState? = objc_getAssociatedObject(self, &kStateKey)
-         as? TPKeyboardAvoidingState
+            as? TPKeyboardAvoidingState
         if state == nil {
             state = TPKeyboardAvoidingState();
             objc_setAssociatedObject(self, &kStateKey, state!, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
@@ -55,14 +55,14 @@ extension UIScrollView:UITextFieldDelegate {
         return state!
     }
     
- //MARK ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝键盘通知 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+    //MARK ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝键盘通知 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     //keyboardWillShow
     func TPKeyboardAvoiding_keyboardWillShow(notification:NSNotification) {
         var state:TPKeyboardAvoidingState = self.tPKeyboardAvoidingState()
         if state.keyboardVisible {
             return
         }
-
+        
         let firstResponder = self.TPKeyboardAvoiding_findFirstResponderBeneathView(self)
         let info = notification.userInfo as Dictionary!
         state.keyboardRect = self.convertRect(((info[_UIKeyboardFrameEndUserInfoKey]) as NSValue!).CGRectValue(), fromView:nil)
@@ -151,20 +151,20 @@ extension UIScrollView:UITextFieldDelegate {
         UIView.commitAnimations()
     }
     
-//MARK ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝键盘通知结束 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+    //MARK ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝键盘通知结束 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     
     func TPKeyboardAvoiding_updateContentInset() {
         var state:TPKeyboardAvoidingState = self.tPKeyboardAvoidingState()
         if state.keyboardVisible {
-        self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
+            self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
         }
     }
     
     func TPKeyboardAvoiding_updateFromContentSizeChange() {
         var state:TPKeyboardAvoidingState = self.tPKeyboardAvoidingState()
         if state.keyboardVisible {
-        state.priorContentSize = self.contentSize
-        self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
+            state.priorContentSize = self.contentSize
+            self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
         }
     }
     
@@ -228,7 +228,7 @@ extension UIScrollView:UITextFieldDelegate {
             } else {
                 self.TPKeyboardAvoiding_findTextFieldAfterTextField(priorTextField, beneathView:childView as UIView, theMinY: minY, foundView: otherView)
             }
-
+            
         }
     }
     
@@ -242,8 +242,8 @@ extension UIScrollView:UITextFieldDelegate {
             }
         }
     }
-
-
+    
+    
     //根据subViews的frame计算contentSize
     func TPKeyboardAvoiding_calculatedContentSizeFromSubviewFrames() -> CGSize {
         let wasShowingVerticalScrollIndicator = self.showsVerticalScrollIndicator
@@ -277,11 +277,11 @@ extension UIScrollView:UITextFieldDelegate {
             padding = kMinimumScrollOffsetPadding;
         }
         offset = subviewRect.origin.y - padding - self.contentInset.top
-
+        
         if offset > (contentSize.height - aviewAreaHeight) {
             offset = contentSize.height - aviewAreaHeight
         }
-  
+        
         if ( offset < -self.contentInset.top ) {
             offset = -self.contentInset.top
         }
@@ -302,7 +302,15 @@ extension UIScrollView:UITextFieldDelegate {
                     textField.returnKeyType = UIReturnKeyType.Done
                 }
             }
+        } else if view.isKindOfClass(UITextView) {
+            var textView = view as UITextView
+            if ((textView.returnKeyType == UIReturnKeyType.Default) && textView.delegate == nil) {
+                textView.delegate = self
+                minY = CGFloat.max
+                otherView = nil
+                self.TPKeyboardAvoiding_findTextFieldAfterTextField(textView, beneathView: self, theMinY: minY, foundView: otherView)
+            }
         }
     }
-
+    
 }
