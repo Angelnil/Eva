@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import UIkit
+import UIKit
 import ObjectiveC
 
 
-let _UIKeyboardFrameEndUserInfoKey = (UIKeyboardFrameEndUserInfoKey != nil ? UIKeyboardFrameEndUserInfoKey:"UIKeyboardBoundsUserInfoKey")
+//let _UIKeyboardFrameEndUserInfoKey = (UIKeyboardFrameEndUserInfoKey != nil ? UIKeyboardFrameEndUserInfoKey:"UIKeyboardBoundsUserInfoKey")
 
 let kCalculatedContentPadding:CGFloat = 10.0
 let kMinimumScrollOffsetPadding:CGFloat = 20.0
@@ -65,7 +65,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
         
         let firstResponder = self.TPKeyboardAvoiding_findFirstResponderBeneathView(self)
         let info = notification.userInfo as Dictionary!
-        state.keyboardRect = self.convertRect(((info[_UIKeyboardFrameEndUserInfoKey]) as NSValue!).CGRectValue(), fromView:nil)
+        state.keyboardRect = self.convertRect(((info[UIKeyboardFrameEndUserInfoKey]) as! NSValue!).CGRectValue(), fromView:nil)
         state.keyboardVisible = true
         state.priorInset = self.contentInset
         state.priorScrollIndicatorInsets = self.scrollIndicatorInsets
@@ -80,7 +80,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
         //动画形式移动
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as NSTimeInterval)
+        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as! NSTimeInterval)
         self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
         
         if  (firstResponder != nil) {
@@ -96,13 +96,13 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
     //keyboardChangeFrame
     func TPKeyboardAvoiding_keyboardWillChangeFrame(notification:NSNotification) {
         var state:TPKeyboardAvoidingState = self.tPKeyboardAvoidingState()
-        if notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as CGFloat! > 0.0 {
+        if notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! CGFloat! > 0.0 {
             return
         }
         
         let firstResponder = self.TPKeyboardAvoiding_findFirstResponderBeneathView(self)
         let info = notification.userInfo as Dictionary!
-        state.keyboardRect = self.convertRect(((info[UIKeyboardFrameEndUserInfoKey]) as NSValue!).CGRectValue(), fromView:nil)
+        state.keyboardRect = self.convertRect(((info[UIKeyboardFrameEndUserInfoKey]) as! NSValue!).CGRectValue(), fromView:nil)
         state.keyboardVisible = true
         state.priorInset = self.contentInset
         state.priorScrollIndicatorInsets = self.scrollIndicatorInsets
@@ -119,7 +119,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
         //动画形式移动
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as NSTimeInterval)
+        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as! NSTimeInterval)
         self.contentInset = self.TPKeyboardAvoiding_contentInsetForKeyboard()
         
         if  (firstResponder != nil) {
@@ -142,7 +142,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
         //动画形式移动
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as NSTimeInterval)
+        UIView.setAnimationDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]) as! NSTimeInterval)
         if self.isKindOfClass(TPKeyboardAvoidingScrollView) {
             self.contentSize = state.priorContentSize
             self.contentInset = state.priorInset
@@ -203,7 +203,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
             if (childView.respondsToSelector("isFirstResponder") && childView.isFirstResponder()) {
                 return (childView as? UIView)
             }
-            let result:UIView? = self.TPKeyboardAvoiding_findFirstResponderBeneathView(childView as UIView)
+            let result:UIView? = self.TPKeyboardAvoiding_findFirstResponderBeneathView(childView as! UIView)
             if result != nil {
                 return result
             }
@@ -214,11 +214,11 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
     func TPKeyboardAvoiding_findTextFieldAfterTextField(priorTextField:UIView,beneathView:UIView, theMinY:CGFloat,foundView:UIView?) {
         let priorFieldOffset:CGFloat = CGRectGetMinY(self.convertRect(priorTextField.frame, fromView: priorTextField.superview));
         for childView in beneathView.subviews {
-            if (childView as UIView).hidden {
+            if (childView as! UIView).hidden {
                 continue
             }
-            if ((childView as UIView !== priorTextField) && (childView.isKindOfClass(UITextField) || childView.isKindOfClass(UITextView)) && (childView as UIView).userInteractionEnabled == true) {
-                let frame:CGRect = self.convertRect((childView as UIView).frame, fromView: beneathView)
+            if ((childView as! UIView !== priorTextField) && (childView.isKindOfClass(UITextField) || childView.isKindOfClass(UITextView)) && (childView as! UIView).userInteractionEnabled == true) {
+                let frame:CGRect = self.convertRect((childView as! UIView).frame, fromView: beneathView)
                 
                 if (CGRectGetMinY(frame) >= priorFieldOffset && CGRectGetMinY(frame) < minY && !(frame.origin.y == priorTextField.frame.origin.y
                     && frame.origin.x < priorTextField.frame.origin.x)) {
@@ -226,7 +226,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
                         otherView = childView as? UIView
                 }
             } else {
-                self.TPKeyboardAvoiding_findTextFieldAfterTextField(priorTextField, beneathView:childView as UIView, theMinY: minY, foundView: otherView)
+                self.TPKeyboardAvoiding_findTextFieldAfterTextField(priorTextField, beneathView:childView as! UIView, theMinY: minY, foundView: otherView)
             }
             
         }
@@ -236,9 +236,9 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
     func TPKeyboardAvoiding_assignTextDelegateForViewsBeneathView(view:UIView) ->() {
         for childView in view.subviews {
             if ( childView.isKindOfClass(UITextField) || childView.isKindOfClass(UITextView) ) {
-                self.TPKeyboardAvoiding_initializeView(childView as UIView)
+                self.TPKeyboardAvoiding_initializeView(childView as! UIView)
             } else {
-                self.TPKeyboardAvoiding_assignTextDelegateForViewsBeneathView(childView as UIView)
+                self.TPKeyboardAvoiding_assignTextDelegateForViewsBeneathView(childView as! UIView)
             }
         }
     }
@@ -290,7 +290,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
     
     func TPKeyboardAvoiding_initializeView(view:UIView) {
         if view.isKindOfClass(UITextField) {
-            var textField = view as UITextField
+            var textField = view as! UITextField
             if ((textField.returnKeyType == UIReturnKeyType.Default) && textField.delegate == nil) {
                 textField.delegate = self
                 minY = CGFloat.max
@@ -303,7 +303,7 @@ extension UIScrollView:UITextFieldDelegate ,UITextViewDelegate{
                 }
             }
         } else if view.isKindOfClass(UITextView) {
-            var textView = view as UITextView
+            var textView = view as! UITextView
             if ((textView.returnKeyType == UIReturnKeyType.Default) && textView.delegate == nil) {
                 textView.delegate = self
                 minY = CGFloat.max

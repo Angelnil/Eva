@@ -26,8 +26,8 @@ class TPKeyboardAvoidingCollectionView: UICollectionView,UITextFieldDelegate, UI
     
     
     //重写初始化方法
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
         self.setUpNotification()
     }
     
@@ -40,7 +40,6 @@ class TPKeyboardAvoidingCollectionView: UICollectionView,UITextFieldDelegate, UI
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -68,11 +67,11 @@ class TPKeyboardAvoidingCollectionView: UICollectionView,UITextFieldDelegate, UI
     }
     
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.TPKeyboardAvoiding_findFirstResponderBeneathView(self)?.resignFirstResponder()
         super.touchesEnded(touches, withEvent: event)
     }
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.returnKeyType == UIReturnKeyType.Next {
             //说明有下一个textField 可以可以输入

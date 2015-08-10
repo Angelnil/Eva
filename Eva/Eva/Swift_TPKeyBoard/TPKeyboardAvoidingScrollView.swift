@@ -65,8 +65,8 @@ class TPKeyboardAvoidingScrollView: UIScrollView,UITextFieldDelegate, UITextView
     func scrollToActiveTextField(){
          self.TPKeyboardAvoiding_scrollToActiveTextField();
     }
-    
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.TPKeyboardAvoiding_findFirstResponderBeneathView(self)?.resignFirstResponder()
         super.touchesEnded(touches, withEvent: event)
     }

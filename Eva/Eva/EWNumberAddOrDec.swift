@@ -87,6 +87,7 @@ class EWNumberAddOrDec: EWBaseView {
     
     //动态更新
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.updateFrames()
     }
 
